@@ -9,18 +9,18 @@ dir.create(path = "plots")
 
 # Load data
 iron <- qtl2::read_cross2(file = system.file("extdata", "iron.zip", package="qtl2") )
-# myQTLdata <- read_cross2(file = "/Users/myUserName/qtlProject/data/myqtldata.yaml" )
+#myQTLdata <- read_cross2(file = "/Users/myUserName/qtlProject/data/myqtldata.yaml" )
 
 # Summarize cross data
-summary(iron)
-names(iron)
+#summary(iron)
+#names(iron)
 
 # List markers on the first six chromosomes
-head(iron$gmap)
+#head(iron$gmap)
 
 # Insert pseudomarkers onto genetic map
 map <- qtl2::insert_pseudomarkers(map=iron$gmap, step=1)
-head(map,2)
+#head(map,2)
 
 # Calculate QTL genotype probabilities
 pr <- qtl2::calc_genoprob(cross=iron, 
@@ -30,20 +30,20 @@ pr <- qtl2::calc_genoprob(cross=iron,
 # Names of probabilities object are chromosomes 
 
 # individuals
-dimnames(pr$`19`)[[1]]
+#dimnames(pr$`19`)[[1]]
 # genotypes
-dimnames(pr$`19`)[[2]]
+#dimnames(pr$`19`)[[2]]
 # positiions (on the chromosome referenced)
-dimnames(pr$`19`)[[3]]
+#dimnames(pr$`19`)[[3]]
 
 # View genotypes for first 3 individuals for first marker on Chr 19
-pr$`19`[1:3,,"D19Mit68"]
+#pr$`19`[1:3,,"D19Mit68"]
 # SS          SB           BB
 # 1 0.0009976995 0.003298162 0.9957041387
 # 2 0.2500000000 0.500000000 0.2500000000
 # 3 0.0003029243 0.999394151 0.0003029243
 
-pr$`19`[1:3,,"c19.loc4"]
+#pr$`19`[1:3,,"c19.loc4"]
 # SS         SB          BB
 # 1 0.001080613 0.03581825 0.963101136
 # 2 0.250000000 0.50000000 0.250000000
@@ -58,12 +58,12 @@ qtl2::plot_genoprob(probs = pr, # probability array
 dev.off()
 
 Xcovar <- qtl2::get_x_covar(cross = iron)
-head(Xcovar)
+#head(Xcovar)
 
 
 # Perform a genome scan
 out <- qtl2::scan1(genoprobs = pr, pheno = iron$pheno, Xcovar=Xcovar, cores = 4)
-head(out, 10)
+#head(out, 10)
 
 png(file="plots/liver.scan.png")
 qtl2::plot_scan1(out, map = map, lodcolumn = "liver")
@@ -75,8 +75,8 @@ dev.off()
 
 options(scipen = 99999)
 # Idenitfy top LOD scores
-tail(sort(out[,"liver"]))
-tail(sort(out[,"spleen"]))
+#tail(sort(out[,"liver"]))
+#tail(sort(out[,"spleen"]))
 
 
 # Permutation testing
@@ -129,7 +129,7 @@ dev.off()
 # QTL effect calculations
 c2eff <- qtl2::scan1coef(genoprobs = pr[,"2"], 
                          pheno = iron$pheno[,"liver"]) # just chromosome 2
-head(c2eff)
+#head(c2eff)
 qtl2::plot_coef(x = c2eff, 
           map = map, 
           columns = 1:3, 
@@ -143,8 +143,10 @@ c2effB <- qtl2::scan1coef(genoprobs = pr[,"2"],
                                      a=c(-1, 0, 1), # additive effects
                                      d=c(-0.5, 1, -0.5) # dominance effects
                                      ))
-head(c2effB)
+#head(c2effB)
+png(file="plots/add_dom_coef.png")
 qtl2::plot_coef(c2effB, map["2"], columns=2:3)
+dev.off()
 
 # Plot PxG plots
 g <- qtl2::maxmarg(probs = pr, 
@@ -157,4 +159,3 @@ par(mar=c(4.1, 4.1, 0.6, 0.6))
 png(file="plots/pxg.png")
 plot_pxg(g, iron$pheno[,"liver"], ylab="Liver phenotype")
 dev.off()
-
