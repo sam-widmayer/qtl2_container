@@ -1,6 +1,8 @@
 #!/usr/bin/env Rscript 
 
 library(qtl2)
+## A script to test the functionality of R/qtl2 singularity container on sumner ##
+
 
 ########################
 ### MOUSE IRON DATA ####
