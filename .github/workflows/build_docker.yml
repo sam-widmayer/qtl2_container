@@ -24,7 +24,6 @@ jobs:
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
         name: sjwidmay/qtl2
-        tag: "${{ steps.current-time.formattedTime }}"
         username: ${{ secrets.SJW_DOCKER_USER }}
         password: ${{ secrets.SJW_DOCKER_PASS }}
         snapshot: true
