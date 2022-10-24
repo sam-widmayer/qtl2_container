@@ -1,7 +1,7 @@
 FROM continuumio/miniconda
 LABEL Sam Widmayer <sjwidmay@gmail.com>
 
-COPY qtl2.yml .
+COPY env/qtl2.yml .
 RUN \
    conda env update -n root -f qtl2.yml \
 && conda clean -a
