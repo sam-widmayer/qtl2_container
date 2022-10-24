@@ -21,7 +21,7 @@ jobs:
 
     # Build Tools
     - name: Build and Publish
-      uses: elgohr/Publish-Docker-Github-Action@master
+      uses: elgohr/Publish-Docker-Github-Action@v4
       with:
         name: sjwidmay/qtl2
         username: ${{ secrets.SJW_DOCKER_USER }}
