@@ -5,12 +5,10 @@ on:
   push:
     paths:
     - 'env/qtl2.Dockerfile'
-    - 'env/qtl2.yml'
     - '.github/workflows/build_docker.yml'
   pull_request:
     paths:
     - 'env/qtl2.Dockerfile'
-    - 'env/qtl2.yml'
     - '.github/workflows/build_docker.yml'
 
 jobs:
