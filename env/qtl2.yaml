@@ -1,0 +1,9 @@
+name: qtl2
+channels:
+  - defaults
+  - r
+dependencies:
+  - r-qtl2
+  - r-qtl2convert
+  - r-qtl2fst
+  - r-qtl2ggplot
